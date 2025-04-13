@@ -213,3 +213,73 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation des chiffres
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number, .success-number');
+        const speed = 200;
+        
+        counters.forEach(counter => {
+            const target = +counter.innerText.replace('+', '');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target + (counter.classList.contains('stat-number') ? '+' : '');
+            }
+        });
+    }
+    
+    // Activer l'animation quand la section est visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.impact-stats, .success-items').forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Animation au scroll
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.feature-card, .content-block, .feature-item');
+        const windowHeight = window.innerHeight;
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const animationPoint = windowHeight - 100;
+            
+            if (elementPosition < animationPoint) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Initialiser les éléments animés
+    document.querySelectorAll('.feature-card, .content-block, .feature-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Initial check
+    
+    // Gestion du formulaire de contact
+    const contactForm = document.querySelector('.contact-form form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous contacterons bientôt.');
+            this.reset();
+        });
+    }
+});
