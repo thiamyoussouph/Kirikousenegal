@@ -269,7 +269,7 @@ nav a:hover::after {
 .hero {
     height: 100vh;
     min-height: 700px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/24c8affa-a745-41eb-8b64-cf0ed8f3a7eb-768x1024-meP1e4zJVVSg2Bg3.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/acceuil.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -903,7 +903,7 @@ footer {
 }
 
 .social-links a {
-    color: white;
+    color: var(--accent);
     font-size: 1.2rem;
     transition: var(--transition);
     width: 40px;
@@ -913,6 +913,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .social-links a:hover {
@@ -929,7 +930,7 @@ footer {
 }
 
 .footer-links a {
-    color: white;
+    color:#D4A017;
     text-decoration: none;
     opacity: 0.8;
     transition: var(--transition);
