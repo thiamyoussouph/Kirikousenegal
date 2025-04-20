@@ -421,7 +421,7 @@ section {
 
 .about-highlight {
     background: linear-gradient(to right, var(--secondary), var(--accent));
-  
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
     position: relative;
